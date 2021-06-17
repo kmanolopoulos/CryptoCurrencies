@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F730B168-5100-4586-95BF-CF764E2B91A0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CryptoCurrencies</RootNamespace>
+    <AssemblyName>CryptoCurrencies</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bitcoin\Bitcoin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bitcoin\Bitcoin.Designer.cs">
+      <DependentUpon>Bitcoin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bitcoin\CurveFp.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bitcoin\Point.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Helper\StringOperations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bitcoin\Bitcoin.resx">
+      <DependentUpon>Bitcoin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ankr-ankr-logo.png" />
+    <Content Include="Resources\ardor-ardr-logo.png" />
+    <Content Include="Resources\basic-attention-token-bat-logo.png" />
+    <Content Include="Resources\binance-coin-bnb-logo.png" />
+    <Content Include="Resources\binance-usd-busd-logo.png" />
+    <Content Include="Resources\bitcoin-btc-logo.png" />
+    <Content Include="Resources\bitcoin-cash-bch-logo.png" />
+    <Content Include="Resources\bittorrent-btt-logo.png" />
+    <Content Include="Resources\cardano-ada-logo.png" />
+    <Content Include="Resources\compound-comp-logo.png" />
+    <Content Include="Resources\dash-dash-logo.png" />
+    <Content Include="Resources\dogecoin-doge-logo.png" />
+    <Content Include="Resources\elrond-egld-egld-logo.png" />
+    <Content Include="Resources\enjin-coin-enj-logo.png" />
+    <Content Include="Resources\eos-eos-logo.png" />
+    <Content Include="Resources\ethereum-eth-logo.png" />
+    <Content Include="Resources\filecoin-fil-logo.png" />
+    <None Include="Resources\Image1.bmp" />
+    <Content Include="Resources\litecoin-ltc-logo.png" />
+    <Content Include="Resources\maker-mkr-logo.png" />
+    <Content Include="Resources\pancakeswap-cake-logo.png" />
+    <Content Include="Resources\polkadot-new-dot-logo.png" />
+    <Content Include="Resources\polygon-matic-logo.png" />
+    <Content Include="Resources\solana-sol-logo.png" />
+    <Content Include="Resources\stellar-xlm-logo.png" />
+    <Content Include="Resources\swipe-sxp-logo.png" />
+    <Content Include="Resources\synthetix-network-token-snx-logo.png" />
+    <Content Include="Resources\terra-luna-luna-logo.png" />
+    <Content Include="Resources\tether-usdt-logo.png" />
+    <Content Include="Resources\tezos-xtz-logo.png" />
+    <Content Include="Resources\the-graph-grt-logo.png" />
+    <Content Include="Resources\theta-theta-logo.png" />
+    <Content Include="Resources\tron-trx-logo.png" />
+    <Content Include="Resources\vechain-vet-logo.png" />
+    <Content Include="Resources\xrp-xrp-logo.png" />
+    <Content Include="Resources\yearn-finance-yfi-logo.png" />
+    <Content Include="Resources\zcash-zec-logo.png" />
+    <Content Include="Resources\zilliqa-zil-logo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
