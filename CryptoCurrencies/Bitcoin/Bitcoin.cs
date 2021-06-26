@@ -42,7 +42,7 @@ namespace CryptoCurrencies.Bitcoin
                 privKey = new BigInteger(bytes);
             } while (privKey >= maxRandom);
 
-            return privKey.ToString("X").Substring(1);
+            return privKey.ToString("X").Substring(1).PadLeft(64, '0');
         }
 
         private String GetClearPublicKey(String clearPrivateKey)
