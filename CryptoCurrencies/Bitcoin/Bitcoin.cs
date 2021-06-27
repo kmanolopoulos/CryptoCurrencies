@@ -21,11 +21,13 @@ namespace CryptoCurrencies.Bitcoin
             String clearPublicKey = GetClearPublicKey(clearPrivateKey);
             String uncompressedWifPrivateKey = GetWifPrivateKey(clearPrivateKey, false);
             String compressedWifPrivateKey = GetWifPrivateKey(clearPrivateKey, true);
+            String btcAddress = GetBtcAddress(clearPublicKey, true);
 
             textBox1.Text = clearPrivateKey;
             textBox2.Text = uncompressedWifPrivateKey;
             textBox3.Text = compressedWifPrivateKey;
             textBox4.Text = clearPublicKey;
+            textBox5.Text = btcAddress;
         }
 
         private String GetClearPrivateKey()
@@ -42,7 +44,7 @@ namespace CryptoCurrencies.Bitcoin
                 privKey = new BigInteger(bytes);
             } while (privKey >= maxRandom);
 
-            return privKey.ToString("X").Substring(1).PadLeft(64, '0');
+            return privKey.ToString("X").PadLeft(65, '0').Substring(1);
         }
 
         private String GetClearPublicKey(String clearPrivateKey)
@@ -52,12 +54,14 @@ namespace CryptoCurrencies.Bitcoin
             BigInteger a = BigInteger.Zero;
             BigInteger Gx = BigInteger.Parse("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", NumberStyles.HexNumber);
             BigInteger Gy = BigInteger.Parse("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", NumberStyles.HexNumber);
+            String result;
 
             CurveFp curve256 = new CurveFp(p, a, b);
             Point generator256 = new Point(curve256, Gx, Gy);
-            BigInteger secret = BigInteger.Parse(clearPrivateKey, NumberStyles.HexNumber);
+            BigInteger secret = BigInteger.Parse("0" + clearPrivateKey, NumberStyles.HexNumber);
             Point pubkeyPoint = generator256 * secret;
-            return pubkeyPoint.X.ToString("X") + pubkeyPoint.Y.ToString("X");
+            result = pubkeyPoint.X.ToString("X") + pubkeyPoint.Y.ToString("X");
+            return result.PadLeft(129, '0').Substring(1);
         }
 
         private String GetWifPrivateKey(String clearPrivateKey, Boolean compressed)
@@ -79,10 +83,10 @@ namespace CryptoCurrencies.Bitcoin
                 clearPrivateKeyBlock = "80" + clearPrivateKey;
             }
 
-            // Hash the whole key block
+            // SHA256 Hash the whole key block
             hashValue1 = sha256.ComputeHash(operations.HexToAscii(clearPrivateKeyBlock));
 
-            // Second hash on the result
+            // Second SHA256 hash on the result
             hashValue2 = sha256.ComputeHash(hashValue1);
 
             // Add hash first bytes to private key block
@@ -92,6 +96,63 @@ namespace CryptoCurrencies.Bitcoin
             wifPrivateKey = operations.Base58Encode(clearPrivateKeyBlock);
 
             return wifPrivateKey;
+        }
+
+        private String GetBtcAddress(String clearPublicKey, Boolean compressed)
+        {
+            String clearPublicKeyBlock;
+            String clearPublicKeyHash;
+            String address;
+            String bitcoinAddress;
+            SHA256 sha256 = SHA256.Create();
+            RIPEMD160 ripemd160 = RIPEMD160.Create();
+            byte[] hashValue1;
+            byte[] hashValue2;
+            StringOperations operations = new StringOperations();
+
+            // Add header
+            if (compressed)
+            {
+                if ((Int16.Parse(clearPublicKey.Substring(127, 1), NumberStyles.HexNumber) % 2) == 1)
+                {
+                    clearPublicKeyBlock = "03" + clearPublicKey.Substring(0, 64);
+                }
+                else
+                {
+                    clearPublicKeyBlock = "02" + clearPublicKey.Substring(0, 64);
+                }
+            }
+            else
+            {
+                clearPublicKeyBlock = "04" + clearPublicKey;
+            }
+
+            // SHA256 Hash the whole key block
+            hashValue1 = sha256.ComputeHash(operations.HexToAscii(clearPublicKeyBlock));
+
+            // RIPEMD60 hash on the result
+            hashValue2 = ripemd160.ComputeHash(hashValue1);
+
+            // Assign hash result
+            clearPublicKeyHash = operations.AsciiToHex(hashValue2);
+
+            // Build P2PKH pattern
+            address = "00" + clearPublicKeyHash;
+
+            // SHA256 Hash P2PKH pattern
+            hashValue1 = sha256.ComputeHash(operations.HexToAscii(address));
+
+            // SHA256 Hash previous result
+            hashValue2 = sha256.ComputeHash(hashValue1);
+
+            // Build full P2PKH pattern
+            address += operations.AsciiToHex(hashValue2).Substring(0, 8);
+
+            // Convert private key block to Base 58 format
+            bitcoinAddress = operations.Base58Encode(address);
+
+            return bitcoinAddress;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
