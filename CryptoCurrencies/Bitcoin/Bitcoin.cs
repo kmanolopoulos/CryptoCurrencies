@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Globalization;
 using System.Text;
 using CryptoCurrencies.Helper;
+using IronBarCode;
 
 namespace CryptoCurrencies.Bitcoin
 {
@@ -28,6 +29,10 @@ namespace CryptoCurrencies.Bitcoin
             textBox3.Text = compressedWifPrivateKey;
             textBox4.Text = clearPublicKey;
             textBox5.Text = btcAddress;
+
+            GenerateQRPrivateKeyWifUncompressed(uncompressedWifPrivateKey);
+            GenerateQRPrivateKeyWifCompressed(compressedWifPrivateKey);
+            GenerateQRPublicKeyBTC(btcAddress);
         }
 
         private String GetClearPrivateKey()
@@ -60,8 +65,8 @@ namespace CryptoCurrencies.Bitcoin
             Point generator256 = new Point(curve256, Gx, Gy);
             BigInteger secret = BigInteger.Parse("0" + clearPrivateKey, NumberStyles.HexNumber);
             Point pubkeyPoint = generator256 * secret;
-            result = pubkeyPoint.X.ToString("X") + pubkeyPoint.Y.ToString("X");
-            return result.PadLeft(129, '0').Substring(1);
+            result = pubkeyPoint.X.ToString("X").PadLeft(65, '0').Substring(1) + pubkeyPoint.Y.ToString("X").PadLeft(65, '0').Substring(1);
+            return result;
         }
 
         private String GetWifPrivateKey(String clearPrivateKey, Boolean compressed)
@@ -152,12 +157,28 @@ namespace CryptoCurrencies.Bitcoin
             bitcoinAddress = operations.Base58Encode(address);
 
             return bitcoinAddress;
-
         }
 
+        private void GenerateQRPrivateKeyWifUncompressed(String uncompressedWifPrivateKey)
+        {
+            BarcodeWriter.CreateBarcode(uncompressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("uncompressedWifPrivateKey.jpg");
+            pictureBox1.ImageLocation = "uncompressedWifPrivateKey.jpg";
+        }
+        private void GenerateQRPrivateKeyWifCompressed(String compressedWifPrivateKey)
+        {
+            BarcodeWriter.CreateBarcode(compressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("compressedWifPrivateKey.jpg");
+            pictureBox2.ImageLocation = "compressedWifPrivateKey.jpg";
+        }
+        private void GenerateQRPublicKeyBTC(String btcAddress)
+        {
+            BarcodeWriter.CreateBarcode(btcAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddress.jpg");
+            pictureBox3.ImageLocation = "btcAddress.jpg";
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             GenerateKeys();
         }
+
+
     }
 }
