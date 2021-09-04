@@ -275,6 +275,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Bitcoin";
             this.Text = "Bitcoin";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bitcoin_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
