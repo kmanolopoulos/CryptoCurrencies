@@ -41,12 +41,11 @@ namespace CryptoCurrencies.Bitcoin
 
         private String GetWifPrivateKey(String clearPrivateKey, Boolean compressed)
         {
+            HashClass hash = new HashClass();
+            Base58 base58 = new Base58();
             String clearPrivateKeyBlock;
             String wifPrivateKey;
-            SHA256 sha256 = SHA256.Create();
-            byte[] hashValue1;
-            byte[] hashValue2;
-            StringOperations operations = new StringOperations();
+            String checksum;
 
             // Add header and compress byte
             if (compressed)
@@ -58,32 +57,26 @@ namespace CryptoCurrencies.Bitcoin
                 clearPrivateKeyBlock = "80" + clearPrivateKey;
             }
 
-            // SHA256 Hash the whole key block
-            hashValue1 = sha256.ComputeHash(operations.HexToAscii(clearPrivateKeyBlock));
+            // Compute checksum
+            checksum = hash.Hash256(clearPrivateKeyBlock);
 
-            // Second SHA256 hash on the result
-            hashValue2 = sha256.ComputeHash(hashValue1);
-
-            // Add hash first bytes to private key block
-            clearPrivateKeyBlock += operations.AsciiToHex(hashValue2).Substring(0, 8);
+            // Add checksum to private key block
+            clearPrivateKeyBlock += checksum;
 
             // Convert private key block to Base 58 format
-            wifPrivateKey = operations.Base58Encode(clearPrivateKeyBlock);
+            wifPrivateKey = base58.Encode(clearPrivateKeyBlock);
 
             return wifPrivateKey;
         }
 
         private String GetBtcAddress(String clearPublicKey, Boolean compressed)
         {
+            HashClass hash = new HashClass();
+            Base58 base58 = new Base58();
             String clearPublicKeyBlock;
-            String clearPublicKeyHash;
+            String checksum;
             String address;
             String bitcoinAddress;
-            SHA256 sha256 = SHA256.Create();
-            RIPEMD160 ripemd160 = RIPEMD160.Create();
-            byte[] hashValue1;
-            byte[] hashValue2;
-            StringOperations operations = new StringOperations();
 
             // Add header
             if (compressed)
@@ -102,48 +95,30 @@ namespace CryptoCurrencies.Bitcoin
                 clearPublicKeyBlock = "04" + clearPublicKey;
             }
 
-            // SHA256 Hash the whole key block
-            hashValue1 = sha256.ComputeHash(operations.HexToAscii(clearPublicKeyBlock));
-
-            // RIPEMD60 hash on the result
-            hashValue2 = ripemd160.ComputeHash(hashValue1);
-
-            // Assign hash result
-            clearPublicKeyHash = operations.AsciiToHex(hashValue2);
-
             // Build P2PKH pattern
-            address = "00" + clearPublicKeyHash;
+            address = "00" + hash.Hash160(clearPublicKeyBlock);
 
-            // SHA256 Hash P2PKH pattern
-            hashValue1 = sha256.ComputeHash(operations.HexToAscii(address));
-
-            // SHA256 Hash previous result
-            hashValue2 = sha256.ComputeHash(hashValue1);
+            // Compute checksum
+            checksum = hash.Hash256(address);
 
             // Build full P2PKH pattern
-            address += operations.AsciiToHex(hashValue2).Substring(0, 8);
+            address += checksum;
 
             // Convert public key block to Base 58 format
-            bitcoinAddress = operations.Base58Encode(address);
+            bitcoinAddress = base58.Encode(address);
 
             return bitcoinAddress;
         }
 
         private String GetBtcAddressSegWit(String clearPublicKey, Boolean compressed)
         {
+            HashClass hash = new HashClass();
+            Bech32 bech32 = new Bech32();
             String clearPublicKeyBlock;
             String clearPublicKeyHash;
-            String clearPublicKeyHashBinary;
             String address;
             String bitcoinAddressSegWit;
-            SHA256 sha256 = SHA256.Create();
-            RIPEMD160 ripemd160 = RIPEMD160.Create();
-            byte[] hashValue1;
-            byte[] hashValue2;
-            Int16 witnessVersionByte = 0;
-            Int16[] base32Array;
-            Int16[] base32Checksum;
-            String bech32Chars = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
+            
             StringOperations operations = new StringOperations();
 
             // Add header
@@ -163,46 +138,11 @@ namespace CryptoCurrencies.Bitcoin
                 clearPublicKeyBlock = "04" + clearPublicKey;
             }
 
-            // SHA256 Hash the whole key block
-            hashValue1 = sha256.ComputeHash(operations.HexToAscii(clearPublicKeyBlock));
-
-            // RIPEMD60 hash on the result
-            hashValue2 = ripemd160.ComputeHash(hashValue1);
-
             // Assign hash result
-            clearPublicKeyHash = operations.AsciiToHex(hashValue2);
+            clearPublicKeyHash = hash.Hash160(clearPublicKeyBlock);
 
-            // Convert hash result into Binary string
-            clearPublicKeyHashBinary = "";
-
-            for (int i = 0; i < clearPublicKeyHash.Length; i += 2)
-            {
-                clearPublicKeyHashBinary += Convert.ToString(Convert.ToByte(clearPublicKeyHash.Substring(i, 2), 16), 2).PadLeft(8, '0');
-            }
-
-            // Convert binary string into 5-bit numbers
-            base32Array = new Int16[clearPublicKeyHashBinary.Length / 5];
-
-            for (int i = 0; i < base32Array.Length; i++)
-            {
-                base32Array[i] = Convert.ToInt16(clearPublicKeyHashBinary.Substring(5 * i, 5), 2);
-            }
-
-            // Compute 6 numbers checksum of 5-bit numbers
-            base32Checksum = new Int16[6] { 0, 0, 0, 0, 0, 0 };
-
-            // Convert 5-bit numbers into Bech32 chars
-            address = bech32Chars[witnessVersionByte].ToString();
-
-            for (int i = 0; i < base32Array.Length; i++)
-            {
-                address += bech32Chars[base32Array[i]];
-            }
-
-            for (int i = 0; i < base32Checksum.Length; i++)
-            {
-                address += bech32Chars[base32Checksum[i]];
-            }
+            // Encode with bech 32 the hash
+            address = bech32.Encode(clearPublicKeyHash);
 
             // Add SegWit header to existing address
             bitcoinAddressSegWit = "bc1" + address;

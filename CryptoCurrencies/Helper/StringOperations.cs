@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Numerics;
-using System.Threading.Tasks;
 
 namespace CryptoCurrencies.Helper
 {
@@ -39,40 +35,6 @@ namespace CryptoCurrencies.Helper
             }
 
             return str.ToString();
-        }
-
-        public String Base58Encode(String value)
-        {
-            byte[] data;
-            String Digits = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-            String result = "";
-
-            // Convert String to byte array
-            data = HexToAscii(value);
-
-            // Decode byte[] to BigInteger
-            BigInteger intData = 0;
-
-            for (int i = 0; i < data.Length; i++)
-            {
-                intData = intData * 256 + data[i];
-            }
-
-            // Encode BigInteger to Base58 string
-            while (intData > 0)
-            {
-                int remainder = (int)(intData % 58);
-                intData /= 58;
-                result = Digits[remainder] + result;
-            }
-
-            // Append `1` for each leading 0 byte
-            for (int i = 0; i < data.Length && data[i] == 0; i++)
-            {
-                result = '1' + result;
-            }
-
-            return result;
         }
     }
 }
