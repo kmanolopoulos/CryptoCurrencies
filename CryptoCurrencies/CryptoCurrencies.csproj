@@ -66,14 +66,15 @@
     <Compile Include="Bitcoin\Bitcoin.Designer.cs">
       <DependentUpon>Bitcoin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bitcoin\CurveFp.cs" />
+    <Compile Include="Helper\DsaCurveFp.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bitcoin\Point.cs" />
+    <Compile Include="Helper\DsaPoint.cs" />
+    <Compile Include="Helper\DsaClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Helper\StringOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

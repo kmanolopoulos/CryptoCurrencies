@@ -1,21 +1,21 @@
 ﻿using System.Numerics;
 
-namespace CryptoCurrencies.Bitcoin
+namespace CryptoCurrencies.Helper
 {
-    class Point
+    class DsaPoint
     {
-        public static readonly Point INFINITY = new Point(null, default(BigInteger), default(BigInteger));
-        public CurveFp Curve { get; private set; }
+        public static readonly DsaPoint INFINITY = new DsaPoint(null, default(BigInteger), default(BigInteger));
+        public DsaCurveFp Curve { get; private set; }
         public BigInteger X { get; private set; }
         public BigInteger Y { get; private set; }
 
-        public Point(CurveFp curve, BigInteger x, BigInteger y)
+        public DsaPoint(DsaCurveFp curve, BigInteger x, BigInteger y)
         {
             this.Curve = curve;
             this.X = x;
             this.Y = y;
         }
-        public Point Double()
+        public DsaPoint Double()
         {
             if (this == INFINITY)
                 return INFINITY;
@@ -25,7 +25,7 @@ namespace CryptoCurrencies.Bitcoin
             BigInteger l = ((3 * this.X * this.X + a) * InverseMod(2 * this.Y, p)) % p;
             BigInteger x3 = (l * l - 2 * this.X) % p;
             BigInteger y3 = (l * (this.X - x3) - this.Y) % p;
-            return new Point(this.Curve, x3, y3);
+            return new DsaPoint(this.Curve, x3, y3);
         }
         public override string ToString()
         {
@@ -33,7 +33,7 @@ namespace CryptoCurrencies.Bitcoin
                 return "infinity";
             return string.Format("({0},{1})", this.X, this.Y);
         }
-        public static Point operator +(Point left, Point right)
+        public static DsaPoint operator +(DsaPoint left, DsaPoint right)
         {
             if (right == INFINITY)
                 return left;
@@ -51,15 +51,15 @@ namespace CryptoCurrencies.Bitcoin
             var l = ((right.Y - left.Y) * InverseMod(right.X - left.X, p)) % p;
             var x3 = (l * l - left.X - right.X) % p;
             var y3 = (l * (left.X - x3) - left.Y) % p;
-            return new Point(left.Curve, x3, y3);
+            return new DsaPoint(left.Curve, x3, y3);
         }
-        public static Point operator *(Point left, BigInteger right)
+        public static DsaPoint operator *(DsaPoint left, BigInteger right)
         {
             var e = right;
             if (e == 0 || left == INFINITY)
                 return INFINITY;
             var e3 = 3 * e;
-            var negativeLeft = new Point(left.Curve, left.X, -left.Y);
+            var negativeLeft = new DsaPoint(left.Curve, left.X, -left.Y);
             var i = LeftmostBit(e3) / 2;
             var result = left;
             while (i > 1)

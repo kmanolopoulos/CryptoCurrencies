@@ -2,7 +2,6 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Forms;
-using System.Numerics;
 using System.Globalization;
 using CryptoCurrencies.Helper;
 using IronBarCode;
@@ -18,8 +17,10 @@ namespace CryptoCurrencies.Bitcoin
 
         private void GenerateKeys()
         {
-            String clearPrivateKey = GetClearPrivateKey();
-            String clearPublicKey = GetClearPublicKey(clearPrivateKey);
+            DsaClass dsa = new DsaClass();
+
+            String clearPrivateKey = dsa.GetPrivateKey();
+            String clearPublicKey = dsa.GetPublicKey();
             String uncompressedWifPrivateKey = GetWifPrivateKey(clearPrivateKey, false);
             String compressedWifPrivateKey = GetWifPrivateKey(clearPrivateKey, true);
             String btcAddress = GetBtcAddress(clearPublicKey, true);
@@ -36,40 +37,6 @@ namespace CryptoCurrencies.Bitcoin
             GenerateQRPrivateKeyWifCompressed(compressedWifPrivateKey);
             GenerateQRPublicKeyBTC(btcAddress);
             GenerateQRPublicKeyBTCSegWit(btcAddressSegWit);
-        }
-
-        private String GetClearPrivateKey()
-        {
-            BigInteger maxRandom = BigInteger.Parse("0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141", NumberStyles.HexNumber);
-            BigInteger privKey;
-            byte[] bytes = maxRandom.ToByteArray();
-            Random random = new Random();
-
-            do
-            {
-                random.NextBytes(bytes);
-                bytes[bytes.Length - 1] &= (byte)0x7F;
-                privKey = new BigInteger(bytes);
-            } while (privKey >= maxRandom);
-
-            return privKey.ToString("X").PadLeft(65, '0').Substring(1);
-        }
-
-        private String GetClearPublicKey(String clearPrivateKey)
-        {
-            BigInteger p = BigInteger.Parse("0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F", NumberStyles.HexNumber);
-            BigInteger b = (BigInteger)7;
-            BigInteger a = BigInteger.Zero;
-            BigInteger Gx = BigInteger.Parse("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", NumberStyles.HexNumber);
-            BigInteger Gy = BigInteger.Parse("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", NumberStyles.HexNumber);
-            String result;
-
-            CurveFp curve256 = new CurveFp(p, a, b);
-            Point generator256 = new Point(curve256, Gx, Gy);
-            BigInteger secret = BigInteger.Parse("0" + clearPrivateKey, NumberStyles.HexNumber);
-            Point pubkeyPoint = generator256 * secret;
-            result = pubkeyPoint.X.ToString("X").PadLeft(65, '0').Substring(1) + pubkeyPoint.Y.ToString("X").PadLeft(65, '0').Substring(1);
-            return result;
         }
 
         private String GetWifPrivateKey(String clearPrivateKey, Boolean compressed)
@@ -242,26 +209,31 @@ namespace CryptoCurrencies.Bitcoin
 
             return bitcoinAddressSegWit;
         }
+
         private void GenerateQRPrivateKeyWifUncompressed(String uncompressedWifPrivateKey)
         {
             BarcodeWriter.CreateBarcode(uncompressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("uncompressedWifPrivateKey.jpg");
             pictureBox1.ImageLocation = "uncompressedWifPrivateKey.jpg";
         }
+
         private void GenerateQRPrivateKeyWifCompressed(String compressedWifPrivateKey)
         {
             BarcodeWriter.CreateBarcode(compressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("compressedWifPrivateKey.jpg");
             pictureBox2.ImageLocation = "compressedWifPrivateKey.jpg";
         }
+
         private void GenerateQRPublicKeyBTC(String btcAddress)
         {
             BarcodeWriter.CreateBarcode(btcAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddress.jpg");
             pictureBox3.ImageLocation = "btcAddress.jpg";
         }
+
         private void GenerateQRPublicKeyBTCSegWit(String btcAddressSegWit)
         {
             BarcodeWriter.CreateBarcode(btcAddressSegWit, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddressSegWit.jpg");
             pictureBox4.ImageLocation = "btcAddressSegWit.jpg";
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             GenerateKeys();
