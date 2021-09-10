@@ -14,42 +14,84 @@ namespace CryptoCurrencies.Helper
         {
             bech32Digits = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
         }
-
-        private Int16[] GetChecksum(Int16[] input)
+        private uint PolyMod(Byte[] input)
         {
-            Int16[] result;
-
-            result = new Int16[6] { 0, 0, 0, 0, 0, 0 };
-
-            return result;
+            uint startValue = 1;
+            for (uint i = 0; i < input.Length; i++)
+            {
+                uint c0 = startValue >> 25;
+                startValue = (uint)(((startValue & 0x1ffffff) << 5) ^
+                    (input[i]) ^
+                    (-((c0 >> 0) & 1) & 0x3b6a57b2) ^
+                    (-((c0 >> 1) & 1) & 0x26508e6d) ^
+                    (-((c0 >> 2) & 1) & 0x1ea119fa) ^
+                    (-((c0 >> 3) & 1) & 0x3d4233dd) ^
+                    (-((c0 >> 4) & 1) & 0x2a1462b3));
+            }
+            return startValue ^ 1;
         }
 
-        public String Encode(String value)
+        private static void HrpExpand(String hrp, Byte[] hrpExpanded)
         {
-            Int16 witnessVersionByte = 0;
+            for (int i = 0; i < hrp.Length; i++)
+            {
+                hrpExpanded[i] = (byte)(hrp[i] >> 5);
+            }
+            hrpExpanded[hrp.Length] = 0;
+            for (int i = 0; i < hrp.Length; i++)
+            {
+                hrpExpanded[hrp.Length + 1 + i] = (byte)(hrp[i] & 31);
+            }
+        }
+
+        private Byte[] GetChecksum(String hrp, Byte witnessVersionByte, Byte[] input)
+        {
+            int hrpLen = hrp.Length * 2 + 1;
+            Byte[] checksum = new Byte[6];
+            Byte[] values = new Byte[hrpLen + 1 + input.Length + checksum.Length];
+
+            HrpExpand(hrp, values);
+
+            values[hrpLen] = witnessVersionByte;
+
+            System.Buffer.BlockCopy(input, 0, values, hrpLen + 1, input.Length);
+
+            uint mod = PolyMod(values);
+
+            for (int i = 0; i < checksum.Length; i++)
+            {
+                checksum[i] = (byte)((mod >> (5 * (5 - i))) & 31);
+            }
+            return checksum;
+        }
+
+        public String Encode(String hrp, Byte witnessVersionByte, String value)
+        {
             String valueInBinary = "";
-            Int16[] valueIn5bitArray;
-            Int16[] checksum;
+            Byte[] valueIn5bitArray;
+            Byte[] checksum;
             String result;
 
+            // Convert value to binary string
             for (int i = 0; i < value.Length; i += 2)
             {
                 valueInBinary += Convert.ToString(Convert.ToByte(value.Substring(i, 2), 16), 2).PadLeft(8, '0');
             }
 
             // Convert binary string into 5-bit numbers
-            valueIn5bitArray = new Int16[valueInBinary.Length / 5];
+            valueIn5bitArray = new Byte[valueInBinary.Length / 5];
 
             for (int i = 0; i < valueIn5bitArray.Length; i++)
             {
-                valueIn5bitArray[i] = Convert.ToInt16(valueInBinary.Substring(5 * i, 5), 2);
+                valueIn5bitArray[i] = Convert.ToByte(valueInBinary.Substring(5 * i, 5), 2);
             }
 
-            // Compute 6 numbers checksum of 5-bit numbers
-            checksum = GetChecksum(valueIn5bitArray);
+            // Compute 6 numbers checksum of hrp + witnesVersionByte + 5-bit numbers
+            checksum = GetChecksum(hrp, witnessVersionByte, valueIn5bitArray);
 
-            // Convert 5-bit numbers into Bech32 chars
-            result = bech32Digits[witnessVersionByte].ToString();
+            // Convert hrp + witnesVersionByte + 5-bit numbers
+            result = hrp + "1";
+            result += bech32Digits[witnessVersionByte].ToString();
 
             for (int i = 0; i < valueIn5bitArray.Length; i++)
             {

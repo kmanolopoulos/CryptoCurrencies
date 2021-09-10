@@ -116,7 +116,6 @@ namespace CryptoCurrencies.Bitcoin
             Bech32 bech32 = new Bech32();
             String clearPublicKeyBlock;
             String clearPublicKeyHash;
-            String address;
             String bitcoinAddressSegWit;
             
             StringOperations operations = new StringOperations();
@@ -142,10 +141,7 @@ namespace CryptoCurrencies.Bitcoin
             clearPublicKeyHash = hash.Hash160(clearPublicKeyBlock);
 
             // Encode with bech 32 the hash
-            address = bech32.Encode(clearPublicKeyHash);
-
-            // Add SegWit header to existing address
-            bitcoinAddressSegWit = "bc1" + address;
+            bitcoinAddressSegWit = bech32.Encode("bc", 0, clearPublicKeyHash);
 
             return bitcoinAddressSegWit;
         }
