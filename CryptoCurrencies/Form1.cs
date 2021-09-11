@@ -20,5 +20,10 @@ namespace CryptoCurrencies
         {
             new CryptoCurrencies.Bitcoin.Bitcoin().Show();
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            new CryptoCurrencies.Dogecoin.Dogecoin().Show();
+        }
     }
 }

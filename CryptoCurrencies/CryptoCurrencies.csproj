@@ -66,6 +66,12 @@
     <Compile Include="Bitcoin\Bitcoin.Designer.cs">
       <DependentUpon>Bitcoin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dogecoin\Dogecoin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dogecoin\Dogecoin.Designer.cs">
+      <DependentUpon>Dogecoin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper\Base58.cs" />
     <Compile Include="Helper\Bech32.cs" />
     <Compile Include="Helper\DsaCurveFp.cs" />
@@ -84,6 +90,9 @@
     <EmbeddedResource Include="Bitcoin\Bitcoin.resx">
       <DependentUpon>Bitcoin.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dogecoin\Dogecoin.resx">
+      <DependentUpon>Dogecoin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -149,6 +158,7 @@
     <Content Include="Resources\zcash-zec-logo.png" />
     <Content Include="Resources\zilliqa-zil-logo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
