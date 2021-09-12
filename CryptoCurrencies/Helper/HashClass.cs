@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Crypto.Digests;
 
 namespace CryptoCurrencies.Helper
 {
@@ -8,12 +9,14 @@ namespace CryptoCurrencies.Helper
         private StringOperations operations;
         private SHA256 sha256;
         private RIPEMD160 ripemd160;
+        private KeccakDigest keccak256;
 
         public HashClass()
         {
             operations = new StringOperations();
             sha256 = SHA256.Create();
             ripemd160 = RIPEMD160.Create();
+            keccak256 = new KeccakDigest(256);
         }
 
         public String Hash256(String input)
@@ -44,6 +47,19 @@ namespace CryptoCurrencies.Helper
 
             // Assign hash result
             return operations.AsciiToHex(hashValue2);
+        }
+
+        public String Keccak256(String input)
+        {
+            Byte[] inputValue = operations.HexToAscii(input);
+            Byte[] hashValue = new byte[32];
+
+            // KECCAK256 Hash the whole key block
+            keccak256.BlockUpdate(inputValue, 0, inputValue.Length);
+            keccak256.DoFinal(hashValue, 0);
+
+            // Assign hash result
+            return operations.AsciiToHex(hashValue);
         }
     }
 }
