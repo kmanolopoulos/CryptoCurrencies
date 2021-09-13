@@ -19,14 +19,26 @@ namespace CryptoCurrencies.Ethereum
 
             String clearPrivateKey = dsa.GetPrivateKey();
             String clearPublicKey = dsa.GetPublicKey();
+            String ethereumPrivateKey = GetEthereumPrivateKey(clearPrivateKey);
             String ethereumAddress = GetEthereumAddress(clearPublicKey);
 
             textBox1.Text = clearPrivateKey;
-            textBox2.Text = clearPublicKey;
-            textBox3.Text = ethereumAddress;
+            textBox2.Text = ethereumPrivateKey;
+            textBox3.Text = clearPublicKey;
+            textBox4.Text = ethereumAddress;
 
-            GenerateQRPrivateKey(clearPrivateKey);
+            GenerateQRPrivateKey(ethereumPrivateKey);
             GenerateQRPublicKeyEthereum(ethereumAddress);
+        }
+
+        private String GetEthereumPrivateKey(String clearPrivateKey)
+        {
+            String ethereumPrivateKey;
+
+            // Add header of ethereum private key
+            ethereumPrivateKey = "0x" + clearPrivateKey;
+
+            return ethereumPrivateKey;
         }
 
         private String GetEthereumAddress(String clearPublicKey)
