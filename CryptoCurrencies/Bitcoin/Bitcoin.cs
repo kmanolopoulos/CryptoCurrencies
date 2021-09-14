@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Globalization;
 using CryptoCurrencies.Helper;
@@ -149,25 +148,25 @@ namespace CryptoCurrencies.Bitcoin
         private void GenerateQRPrivateKeyWifUncompressed(String uncompressedWifPrivateKey)
         {
             BarcodeWriter.CreateBarcode(uncompressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("uncompressedWifPrivateKey.jpg");
-            pictureBox1.ImageLocation = "uncompressedWifPrivateKey.jpg";
+            pictureBox2.ImageLocation = "uncompressedWifPrivateKey.jpg";
         }
 
         private void GenerateQRPrivateKeyWifCompressed(String compressedWifPrivateKey)
         {
             BarcodeWriter.CreateBarcode(compressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("compressedWifPrivateKey.jpg");
-            pictureBox2.ImageLocation = "compressedWifPrivateKey.jpg";
+            pictureBox3.ImageLocation = "compressedWifPrivateKey.jpg";
         }
 
         private void GenerateQRPublicKeyBTC(String btcAddress)
         {
             BarcodeWriter.CreateBarcode(btcAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddress.jpg");
-            pictureBox3.ImageLocation = "btcAddress.jpg";
+            pictureBox4.ImageLocation = "btcAddress.jpg";
         }
 
         private void GenerateQRPublicKeyBTCSegWit(String btcAddressSegWit)
         {
             BarcodeWriter.CreateBarcode(btcAddressSegWit, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddressSegWit.jpg");
-            pictureBox4.ImageLocation = "btcAddressSegWit.jpg";
+            pictureBox5.ImageLocation = "btcAddressSegWit.jpg";
         }
 
         private void button1_Click(object sender, EventArgs e)

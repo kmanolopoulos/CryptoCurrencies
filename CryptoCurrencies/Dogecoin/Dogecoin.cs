@@ -84,13 +84,13 @@ namespace CryptoCurrencies.Dogecoin
         private void GenerateQRPrivateKeyWif(String wifPrivateKey)
         {
             BarcodeWriter.CreateBarcode(wifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("wifPrivateKey.jpg");
-            pictureBox1.ImageLocation = "wifPrivateKey.jpg";
+            pictureBox2.ImageLocation = "wifPrivateKey.jpg";
         }
 
         private void GenerateQRPublicKeyDogecoin(String dogecoinAddress)
         {
             BarcodeWriter.CreateBarcode(dogecoinAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("dogecoinAddress.jpg");
-            pictureBox2.ImageLocation = "dogecoinAddress.jpg";
+            pictureBox3.ImageLocation = "dogecoinAddress.jpg";
         }
 
         private void button1_Click(object sender, EventArgs e)

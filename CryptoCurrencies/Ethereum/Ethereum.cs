@@ -62,13 +62,13 @@ namespace CryptoCurrencies.Ethereum
         private void GenerateQRPrivateKey(String privateKey)
         {
             BarcodeWriter.CreateBarcode(privateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("privateKey.jpg");
-            pictureBox1.ImageLocation = "privateKey.jpg";
+            pictureBox2.ImageLocation = "privateKey.jpg";
         }
 
         private void GenerateQRPublicKeyEthereum(String ethereumAddress)
         {
             BarcodeWriter.CreateBarcode(ethereumAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("ethereumAddress.jpg");
-            pictureBox2.ImageLocation = "ethereumAddress.jpg";
+            pictureBox3.ImageLocation = "ethereumAddress.jpg";
         }
 
         private void button1_Click(object sender, EventArgs e)
