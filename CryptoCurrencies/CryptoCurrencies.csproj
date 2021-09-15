@@ -63,51 +63,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bitcoin\Bitcoin.cs">
+    <Compile Include="CryptoCurrencies\Bitcoin\Bitcoin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bitcoin\Bitcoin.Designer.cs">
+    <Compile Include="CryptoCurrencies\Bitcoin\Bitcoin.Designer.cs">
       <DependentUpon>Bitcoin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dogecoin\Dogecoin.cs">
+    <Compile Include="CryptoCurrencies\Dogecoin\Dogecoin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dogecoin\Dogecoin.Designer.cs">
+    <Compile Include="CryptoCurrencies\Dogecoin\Dogecoin.Designer.cs">
       <DependentUpon>Dogecoin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ethereum\Ethereum.cs">
+    <Compile Include="CryptoCurrencies\Ethereum\Ethereum.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ethereum\Ethereum.Designer.cs">
+    <Compile Include="CryptoCurrencies\Ethereum\Ethereum.Designer.cs">
       <DependentUpon>Ethereum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\Base58.cs" />
-    <Compile Include="Helper\Bech32.cs" />
-    <Compile Include="Helper\DsaCurveFp.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="HelperClasses\Base58.cs" />
+    <Compile Include="HelperClasses\Bech32.cs" />
+    <Compile Include="HelperClasses\DsaCurveFp.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\DsaPoint.cs" />
-    <Compile Include="Helper\DsaClass.cs" />
-    <Compile Include="Helper\HashClass.cs" />
+    <Compile Include="HelperClasses\DsaPoint.cs" />
+    <Compile Include="HelperClasses\DsaClass.cs" />
+    <Compile Include="HelperClasses\HashClass.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Helper\StringOperations.cs" />
+    <Compile Include="HelperClasses\StringOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Bitcoin\Bitcoin.resx">
+    <EmbeddedResource Include="CryptoCurrencies\Bitcoin\Bitcoin.resx">
       <DependentUpon>Bitcoin.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dogecoin\Dogecoin.resx">
+    <EmbeddedResource Include="CryptoCurrencies\Dogecoin\Dogecoin.resx">
       <DependentUpon>Dogecoin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ethereum\Ethereum.resx">
+    <EmbeddedResource Include="CryptoCurrencies\Ethereum\Ethereum.resx">
       <DependentUpon>Ethereum.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
