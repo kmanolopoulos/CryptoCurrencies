@@ -2,7 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using CryptoCurrencies.Helper;
-using IronBarCode;
+using ZXing.QrCode;
+using ZXing.Common;
 
 namespace CryptoCurrencies.Dogecoin
 {
@@ -83,13 +84,15 @@ namespace CryptoCurrencies.Dogecoin
 
         private void GenerateQRPrivateKeyWif(String wifPrivateKey)
         {
-            BarcodeWriter.CreateBarcode(wifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("wifPrivateKey.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(wifPrivateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox2.Width, pictureBox2.Height);
+            matrix.ToBitmap().Save("wifPrivateKey.jpg");
             pictureBox2.ImageLocation = "wifPrivateKey.jpg";
         }
 
         private void GenerateQRPublicKeyDogecoin(String dogecoinAddress)
         {
-            BarcodeWriter.CreateBarcode(dogecoinAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("dogecoinAddress.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(dogecoinAddress, ZXing.BarcodeFormat.QR_CODE, pictureBox3.Width, pictureBox3.Height);
+            matrix.ToBitmap().Save("dogecoinAddress.jpg");
             pictureBox3.ImageLocation = "dogecoinAddress.jpg";
         }
 

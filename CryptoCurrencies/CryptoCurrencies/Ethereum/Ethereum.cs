@@ -2,7 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using CryptoCurrencies.Helper;
-using IronBarCode;
+using ZXing.QrCode;
+using ZXing.Common;
 
 namespace CryptoCurrencies.Ethereum
 {
@@ -61,13 +62,15 @@ namespace CryptoCurrencies.Ethereum
 
         private void GenerateQRPrivateKey(String privateKey)
         {
-            BarcodeWriter.CreateBarcode(privateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("privateKey.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(privateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox2.Width, pictureBox2.Height);
+            matrix.ToBitmap().Save("privateKey.jpg");
             pictureBox2.ImageLocation = "privateKey.jpg";
         }
 
         private void GenerateQRPublicKeyEthereum(String ethereumAddress)
         {
-            BarcodeWriter.CreateBarcode(ethereumAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("ethereumAddress.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(ethereumAddress, ZXing.BarcodeFormat.QR_CODE, pictureBox3.Width, pictureBox3.Height);
+            matrix.ToBitmap().Save("ethereumAddress.jpg");
             pictureBox3.ImageLocation = "ethereumAddress.jpg";
         }
 

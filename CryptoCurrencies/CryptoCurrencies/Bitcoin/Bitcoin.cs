@@ -3,7 +3,8 @@ using System.IO;
 using System.Windows.Forms;
 using System.Globalization;
 using CryptoCurrencies.Helper;
-using IronBarCode;
+using ZXing.QrCode;
+using ZXing.Common;
 
 namespace CryptoCurrencies.Bitcoin
 {
@@ -147,25 +148,29 @@ namespace CryptoCurrencies.Bitcoin
 
         private void GenerateQRPrivateKeyWifUncompressed(String uncompressedWifPrivateKey)
         {
-            BarcodeWriter.CreateBarcode(uncompressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("uncompressedWifPrivateKey.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(uncompressedWifPrivateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox2.Width, pictureBox2.Height);
+            matrix.ToBitmap().Save("uncompressedWifPrivateKey.jpg");
             pictureBox2.ImageLocation = "uncompressedWifPrivateKey.jpg";
         }
 
         private void GenerateQRPrivateKeyWifCompressed(String compressedWifPrivateKey)
         {
-            BarcodeWriter.CreateBarcode(compressedWifPrivateKey, BarcodeWriterEncoding.QRCode).SaveAsJpeg("compressedWifPrivateKey.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(compressedWifPrivateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox3.Width, pictureBox3.Height);
+            matrix.ToBitmap().Save("compressedWifPrivateKey.jpg");
             pictureBox3.ImageLocation = "compressedWifPrivateKey.jpg";
         }
 
         private void GenerateQRPublicKeyBTC(String btcAddress)
         {
-            BarcodeWriter.CreateBarcode(btcAddress, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddress.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(btcAddress, ZXing.BarcodeFormat.QR_CODE, pictureBox4.Width, pictureBox4.Height);
+            matrix.ToBitmap().Save("btcAddress.jpg");
             pictureBox4.ImageLocation = "btcAddress.jpg";
         }
 
         private void GenerateQRPublicKeyBTCSegWit(String btcAddressSegWit)
         {
-            BarcodeWriter.CreateBarcode(btcAddressSegWit, BarcodeWriterEncoding.QRCode).SaveAsJpeg("btcAddressSegWit.jpg");
+            BitMatrix matrix = new QRCodeWriter().encode(btcAddressSegWit, ZXing.BarcodeFormat.QR_CODE, pictureBox5.Width, pictureBox5.Height);
+            matrix.ToBitmap().Save("btcAddressSegWit.jpg");
             pictureBox5.ImageLocation = "btcAddressSegWit.jpg";
         }
 
