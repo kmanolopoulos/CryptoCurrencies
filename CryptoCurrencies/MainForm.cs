@@ -12,17 +12,22 @@ namespace CryptoCurrencies
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            new CryptoCurrencies.Bitcoin.Bitcoin().Show();
+            new Bitcoin.Bitcoin().Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            new CryptoCurrencies.Ethereum.Ethereum().Show();
+            new Ethereum.Ethereum().Show();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            new CryptoCurrencies.Dogecoin.Dogecoin().Show();
+            new Dogecoin.Dogecoin().Show();
+        }
+
+        private void pictureBox23_Click(object sender, EventArgs e)
+        {
+            new Tron.Tron().Show();
         }
     }
 }

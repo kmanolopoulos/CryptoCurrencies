@@ -1,7 +1,7 @@
 ﻿
-namespace CryptoCurrencies.Ethereum
+namespace CryptoCurrencies.Tron
 {
-    partial class Ethereum
+    partial class Tron
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,9 @@ namespace CryptoCurrencies.Ethereum
         /// </summary>
         private void InitializeComponent()
         {
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label6a = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -40,13 +43,39 @@ namespace CryptoCurrencies.Ethereum
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CryptoCurrencies.Properties.Resources.ethereum_eth_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(95, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(59, 53);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 64;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(191, 135);
+            this.textBox2.MaxLength = 64;
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(427, 43);
+            this.textBox2.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(14, 146);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(171, 22);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Private key (TRON)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6a
             // 
@@ -54,7 +83,7 @@ namespace CryptoCurrencies.Ethereum
             this.label6a.Name = "label6a";
             this.label6a.Size = new System.Drawing.Size(96, 22);
             this.label6a.TabIndex = 10;
-            this.label6a.Text = "Public key (ETH)";
+            this.label6a.Text = "Public key (TRON)";
             this.label6a.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -63,7 +92,7 @@ namespace CryptoCurrencies.Ethereum
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(171, 22);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Private key (ETH)";
+            this.label5.Text = "Private key (TRON)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox3
@@ -72,7 +101,7 @@ namespace CryptoCurrencies.Ethereum
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(103, 86);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 47;
+            this.pictureBox3.TabIndex = 61;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
@@ -81,7 +110,7 @@ namespace CryptoCurrencies.Ethereum
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(103, 86);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 46;
+            this.pictureBox2.TabIndex = 60;
             this.pictureBox2.TabStop = false;
             // 
             // textBox4
@@ -99,7 +128,7 @@ namespace CryptoCurrencies.Ethereum
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(171, 22);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Public key (ETH)";
+            this.label4.Text = "Public key (TRON)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox3
@@ -150,36 +179,7 @@ namespace CryptoCurrencies.Ethereum
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(14, 146);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 22);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Private key (ETH)";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(191, 135);
-            this.textBox2.MaxLength = 64;
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(427, 43);
-            this.textBox2.TabIndex = 4;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CryptoCurrencies.Properties.Resources.ethereum_eth_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(95, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 53);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 50;
-            this.pictureBox1.TabStop = false;
-            // 
-            // Ethereum
+            // Tron
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,11 +198,11 @@ namespace CryptoCurrencies.Ethereum
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Name = "Ethereum";
-            this.Text = "Ethereum";
+            this.Name = "Tron";
+            this.Text = "Tron";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,6 +210,9 @@ namespace CryptoCurrencies.Ethereum
 
         #endregion
 
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6a;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -221,8 +224,5 @@ namespace CryptoCurrencies.Ethereum
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

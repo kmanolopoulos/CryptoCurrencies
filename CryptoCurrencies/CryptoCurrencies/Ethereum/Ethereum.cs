@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using CryptoCurrencies.HelperClasses;
-using ZXing;
 
 namespace CryptoCurrencies.Ethereum
 {
