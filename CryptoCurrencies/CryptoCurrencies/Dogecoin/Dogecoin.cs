@@ -1,9 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 using CryptoCurrencies.Helper;
 using ZXing.QrCode;
 using ZXing.Common;
+using ZXing;
 
 namespace CryptoCurrencies.Dogecoin
 {
@@ -84,27 +84,27 @@ namespace CryptoCurrencies.Dogecoin
 
         private void GenerateQRPrivateKeyWif(String wifPrivateKey)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(wifPrivateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox2.Width, pictureBox2.Height);
-            matrix.ToBitmap().Save("wifPrivateKey.jpg");
-            pictureBox2.ImageLocation = "wifPrivateKey.jpg";
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options.Height = pictureBox2.Height;
+            writer.Options.Width = pictureBox2.Width;
+
+            pictureBox2.Image = writer.Write(writer.Encode(wifPrivateKey));
         }
 
         private void GenerateQRPublicKeyDogecoin(String dogecoinAddress)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(dogecoinAddress, ZXing.BarcodeFormat.QR_CODE, pictureBox3.Width, pictureBox3.Height);
-            matrix.ToBitmap().Save("dogecoinAddress.jpg");
-            pictureBox3.ImageLocation = "dogecoinAddress.jpg";
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options.Height = pictureBox3.Height;
+            writer.Options.Width = pictureBox3.Width;
+
+            pictureBox3.Image = writer.Write(writer.Encode(dogecoinAddress));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             GenerateKeys();
-        }
-
-        private void Dogecoin_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            File.Delete("wifPrivateKey.jpg");
-            File.Delete("dogecoinAddress.jpg");
         }
     }
 }

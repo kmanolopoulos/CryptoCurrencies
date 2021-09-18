@@ -1,10 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 using System.Globalization;
 using CryptoCurrencies.Helper;
-using ZXing.QrCode;
-using ZXing.Common;
+using ZXing;
 
 namespace CryptoCurrencies.Bitcoin
 {
@@ -148,43 +146,47 @@ namespace CryptoCurrencies.Bitcoin
 
         private void GenerateQRPrivateKeyWifUncompressed(String uncompressedWifPrivateKey)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(uncompressedWifPrivateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox2.Width, pictureBox2.Height);
-            matrix.ToBitmap().Save("uncompressedWifPrivateKey.jpg");
-            pictureBox2.ImageLocation = "uncompressedWifPrivateKey.jpg";
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options.Height = pictureBox2.Height;
+            writer.Options.Width = pictureBox2.Width;
+
+            pictureBox2.Image = writer.Write(writer.Encode(uncompressedWifPrivateKey));
         }
 
         private void GenerateQRPrivateKeyWifCompressed(String compressedWifPrivateKey)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(compressedWifPrivateKey, ZXing.BarcodeFormat.QR_CODE, pictureBox3.Width, pictureBox3.Height);
-            matrix.ToBitmap().Save("compressedWifPrivateKey.jpg");
-            pictureBox3.ImageLocation = "compressedWifPrivateKey.jpg";
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options.Height = pictureBox3.Height;
+            writer.Options.Width = pictureBox3.Width;
+
+            pictureBox3.Image = writer.Write(writer.Encode(compressedWifPrivateKey));
         }
 
         private void GenerateQRPublicKeyBTC(String btcAddress)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(btcAddress, ZXing.BarcodeFormat.QR_CODE, pictureBox4.Width, pictureBox4.Height);
-            matrix.ToBitmap().Save("btcAddress.jpg");
-            pictureBox4.ImageLocation = "btcAddress.jpg";
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options.Height = pictureBox4.Height;
+            writer.Options.Width = pictureBox4.Width;
+
+            pictureBox4.Image = writer.Write(writer.Encode(btcAddress));
         }
 
         private void GenerateQRPublicKeyBTCSegWit(String btcAddressSegWit)
         {
-            BitMatrix matrix = new QRCodeWriter().encode(btcAddressSegWit, ZXing.BarcodeFormat.QR_CODE, pictureBox5.Width, pictureBox5.Height);
-            matrix.ToBitmap().Save("btcAddressSegWit.jpg");
-            pictureBox5.ImageLocation = "btcAddressSegWit.jpg";
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options.Height = pictureBox5.Height;
+            writer.Options.Width = pictureBox5.Width;
+
+            pictureBox5.Image = writer.Write(writer.Encode(btcAddressSegWit));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             GenerateKeys();
-        }
-
-        private void Bitcoin_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            File.Delete("uncompressedWifPrivateKey.jpg");
-            File.Delete("compressedWifPrivateKey.jpg");
-            File.Delete("btcAddress.jpg");
-            File.Delete("btcAddressSegWit.jpg");
         }
     }
 }
