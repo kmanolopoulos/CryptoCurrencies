@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace CryptoCurrencies.Helper
+namespace CryptoCurrencies.HelperClasses
 {
     class DsaCurveFp
     {

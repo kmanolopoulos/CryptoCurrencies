@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Globalization;
-using CryptoCurrencies.Helper;
-using ZXing;
+using CryptoCurrencies.HelperClasses;
 
 namespace CryptoCurrencies.Bitcoin
 {
@@ -146,42 +145,22 @@ namespace CryptoCurrencies.Bitcoin
 
         private void GenerateQRPrivateKeyWifUncompressed(String uncompressedWifPrivateKey)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox2.Height;
-            writer.Options.Width = pictureBox2.Width;
-
-            pictureBox2.Image = writer.Write(writer.Encode(uncompressedWifPrivateKey));
+            pictureBox2.Image = new QRImage(pictureBox2.Height, pictureBox2.Width).GetBitmap(uncompressedWifPrivateKey);
         }
 
         private void GenerateQRPrivateKeyWifCompressed(String compressedWifPrivateKey)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox3.Height;
-            writer.Options.Width = pictureBox3.Width;
-
-            pictureBox3.Image = writer.Write(writer.Encode(compressedWifPrivateKey));
+            pictureBox3.Image = new QRImage(pictureBox3.Height, pictureBox3.Width).GetBitmap(compressedWifPrivateKey);
         }
 
         private void GenerateQRPublicKeyBTC(String btcAddress)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox4.Height;
-            writer.Options.Width = pictureBox4.Width;
-
-            pictureBox4.Image = writer.Write(writer.Encode(btcAddress));
+            pictureBox4.Image = new QRImage(pictureBox4.Height, pictureBox4.Width).GetBitmap(btcAddress);
         }
 
         private void GenerateQRPublicKeyBTCSegWit(String btcAddressSegWit)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox5.Height;
-            writer.Options.Width = pictureBox5.Width;
-
-            pictureBox5.Image = writer.Write(writer.Encode(btcAddressSegWit));
+            pictureBox5.Image = new QRImage(pictureBox5.Height, pictureBox5.Width).GetBitmap(btcAddressSegWit);
         }
 
         private void button1_Click(object sender, EventArgs e)

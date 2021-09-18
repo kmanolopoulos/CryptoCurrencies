@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace CryptoCurrencies.Helper
+namespace CryptoCurrencies.HelperClasses
 {
     class Base58
     {

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace CryptoCurrencies.Helper
+namespace CryptoCurrencies.HelperClasses
 {
     class StringOperations
     {

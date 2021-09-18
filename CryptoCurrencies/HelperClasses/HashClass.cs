@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using Org.BouncyCastle.Crypto.Digests;
 
-namespace CryptoCurrencies.Helper
+namespace CryptoCurrencies.HelperClasses
 {
     class HashClass
     {

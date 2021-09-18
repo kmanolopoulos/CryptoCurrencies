@@ -102,6 +102,7 @@
     <Compile Include="HelperClasses\Base58.cs" />
     <Compile Include="HelperClasses\Bech32.cs" />
     <Compile Include="HelperClasses\DsaCurveFp.cs" />
+    <Compile Include="HelperClasses\QRImage.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using CryptoCurrencies.Helper;
-using ZXing.QrCode;
-using ZXing.Common;
-using ZXing;
+using CryptoCurrencies.HelperClasses;
 
 namespace CryptoCurrencies.Dogecoin
 {
@@ -84,22 +81,12 @@ namespace CryptoCurrencies.Dogecoin
 
         private void GenerateQRPrivateKeyWif(String wifPrivateKey)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox2.Height;
-            writer.Options.Width = pictureBox2.Width;
-
-            pictureBox2.Image = writer.Write(writer.Encode(wifPrivateKey));
+            pictureBox2.Image = new QRImage(pictureBox2.Height, pictureBox2.Width).GetBitmap(wifPrivateKey);
         }
 
         private void GenerateQRPublicKeyDogecoin(String dogecoinAddress)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox3.Height;
-            writer.Options.Width = pictureBox3.Width;
-
-            pictureBox3.Image = writer.Write(writer.Encode(dogecoinAddress));
+            pictureBox3.Image = new QRImage(pictureBox3.Height, pictureBox3.Width).GetBitmap(dogecoinAddress);
         }
 
         private void button1_Click(object sender, EventArgs e)

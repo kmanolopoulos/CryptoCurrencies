@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using CryptoCurrencies.Helper;
+using CryptoCurrencies.HelperClasses;
 using ZXing;
 
 namespace CryptoCurrencies.Ethereum
@@ -60,22 +60,12 @@ namespace CryptoCurrencies.Ethereum
 
         private void GenerateQRPrivateKey(String privateKey)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox2.Height;
-            writer.Options.Width = pictureBox2.Width;
-
-            pictureBox2.Image = writer.Write(writer.Encode(privateKey));
+            pictureBox2.Image = new QRImage(pictureBox2.Height, pictureBox2.Width).GetBitmap(privateKey);
         }
 
         private void GenerateQRPublicKeyEthereum(String ethereumAddress)
         {
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            writer.Options.Height = pictureBox3.Height;
-            writer.Options.Width = pictureBox3.Width;
-
-            pictureBox3.Image = writer.Write(writer.Encode(ethereumAddress));
+            pictureBox3.Image = new QRImage(pictureBox3.Height, pictureBox3.Width).GetBitmap(ethereumAddress);
         }
 
         private void button1_Click(object sender, EventArgs e)

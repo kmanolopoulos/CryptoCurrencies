@@ -2,7 +2,7 @@
 using System.Numerics;
 using System.Globalization;
 
-namespace CryptoCurrencies.Helper
+namespace CryptoCurrencies.HelperClasses
 {
     class DsaClass
     {
