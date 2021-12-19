@@ -1,0 +1,98 @@
+====
+Seed
+====
+Seed value																19CB0E456D30539127FB9ABAE15F978B
+
+=================
+Root Private key
+=================
+Seed value																19CB0E456D30539127FB9ABAE15F978B
+Root key sequence														00000000
+seed value + Root key sequence											19CB0E456D30539127FB9ABAE15F978B + 00000000
+SHA-512 of seed value + Root key sequence								F69A706F1FDDE7ECAD849EB1333688AF0FE669E864E2DDBB5C7C41BE48450C316862C7BDAF64F9DC8003D08F73C5226246FF60BDCA52C96928FACEB6FCD09DF1
+First half of SHA-512 of seed value + Root key sequence					F69A706F1FDDE7ECAD849EB1333688AF0FE669E864E2DDBB5C7C41BE48450C31
+Root Private key														F69A706F1FDDE7ECAD849EB1333688AF0FE669E864E2DDBB5C7C41BE48450C31
+If Root Private key is not acceptable, increase Root key sequence by 1 + repeat process
+
+==========================
+Root Public key compressed
+==========================
+Root Private key														F69A706F1FDDE7ECAD849EB1333688AF0FE669E864E2DDBB5C7C41BE48450C31
+Root Public key															4FED56AC8310931CACE4F95F95DD77EE7A8F66195E9997526A6F602184C1A83781D9ABB7B9AE4B0DCE7506DA5BF3AD9A161F7BF12B1F9C3DE69946714D96EEFC
+Root Public key (Point X)												4FED56AC8310931CACE4F95F95DD77EE7A8F66195E9997526A6F602184C1A837
+Root Public key (Point Y)												81D9ABB7B9AE4B0DCE7506DA5BF3AD9A161F7BF12B1F9C3DE69946714D96EEFC
+Root Public key (Point Y) last digit									C (even is '02' on clear Public key block / odd is '03')
+Root Public key compressed												02 + 4FED56AC8310931CACE4F95F95DD77EE7A8F66195E9997526A6F602184C1A837
+
+========================
+Intermediate Private key
+========================
+Root Public key compressed												024FED56AC8310931CACE4F95F95DD77EE7A8F66195E9997526A6F602184C1A837
+Family number															00000000
+Intermediate key sequence												00000000
+Root Public key compressed + Family number + Int key sequence			024FED56AC8310931CACE4F95F95DD77EE7A8F66195E9997526A6F602184C1A837 + 00000000 + 00000000
+SHA-512 of above														B8ECCB646A745CA410D1C3CFEA852686E0B1C9E1B9296063B36E48005C9AF346E5A1262BB642916713454B6FB3FA6AAA7F9C596FCDF9340770956159A1011684
+First half of SHA-512 of above											B8ECCB646A745CA410D1C3CFEA852686E0B1C9E1B9296063B36E48005C9AF346
+Intermediate Private key												B8ECCB646A745CA410D1C3CFEA852686E0B1C9E1B9296063B36E48005C9AF346
+If Intermediate Private key is not acceptable, increase Intermediate key sequence by 1 + repeat process
+
+==================================
+Intermediate Public key compressed
+==================================
+Intermediate Private key												B8ECCB646A745CA410D1C3CFEA852686E0B1C9E1B9296063B36E48005C9AF346
+Intermediate Public key													FF9225B2824F1F4E859B23A709AAE330150AFC95899A93F3FFEA45CEC1253717BD77EF585179274592BF12CD955B3F305F885C3CACBEFA173A7DC6EB76311E78
+Intermediate Public key (Point X)										FF9225B2824F1F4E859B23A709AAE330150AFC95899A93F3FFEA45CEC1253717
+Intermediate Public key (Point Y)										BD77EF585179274592BF12CD955B3F305F885C3CACBEFA173A7DC6EB76311E78
+Intermediate Public key (Point Y) last digit							8 (even is '02' on clear Public key block / odd is '03')
+Intermediate Public key compressed										02 + FF9225B2824F1F4E859B23A709AAE330150AFC95899A93F3FFEA45CEC1253717
+
+==================
+Master Private key
+==================
+Root Private key														F69A706F1FDDE7ECAD849EB1333688AF0FE669E864E2DDBB5C7C41BE48450C31
+Intermediate Private key												B8ECCB646A745CA410D1C3CFEA852686E0B1C9E1B9296063B36E48005C9AF346
+Add Root Private key + Intermediate Private key							1AF873BD38A524490BE5662811DBBAF35F09833CA1E0C3E1F0FEA89BEA4DFFF77
+secp256k1 group order													FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
+Add Root Private key + Intermediate Private key modulo group order		AF873BD38A524490BE5662811DBBAF3735E956E36EC39DE350182B31D4A9BE36
+Master Private key														AF873BD38A524490BE5662811DBBAF3735E956E36EC39DE350182B31D4A9BE36
+
+============================
+Master Public key compressed
+============================
+Master Private key														AF873BD38A524490BE5662811DBBAF3735E956E36EC39DE350182B31D4A9BE36
+Master Public key														5F2BC2E7E3C0A53225493B5630CD1DAABBADC9B5C28903A3B57A79C157B163736A612CF4328205A532B525AF89D85690CD45D778AFD9BBAEC563842588B3321B
+Master Public key (Point X)												5F2BC2E7E3C0A53225493B5630CD1DAABBADC9B5C28903A3B57A79C157B16373
+Master Public key (Point Y)												6A612CF4328205A532B525AF89D85690CD45D778AFD9BBAEC563842588B3321B
+Master Public key (Point Y) last digit									B (even is '02' on clear Public key block / odd is '03')
+Master Public key compressed											03 + 5F2BC2E7E3C0A53225493B5630CD1DAABBADC9B5C28903A3B57A79C157B16373
+
+==================
+Seed value address
+==================
+Seed value																19CB0E456D30539127FB9ABAE15F978B
+Header for seed address type + Seed value								21 + 19CB0E456D30539127FB9ABAE15F978B
+SHA-256 of Header + Seed value											BD4172A4BA6FA009D9DDC09692A71E6672874936D4F1DB2845654E7973901376
+SHA-256 of SHA-256 of Header + Seed value								45C3C954D576F590C9349334CA9301DBD3350A3ABBCAECEE24E0E47FADE35F21
+8 leftmost hexadecimal digits of above (Checksum)						45C3C954
+Header + Seed value + checksum											2119CB0E456D30539127FB9ABAE15F978B + 45C3C954
+Base-58 address															3349GVQrfyMZ4t9zeU8PMEP8wMNsm
+Base-58 dictionary Bitcoin												123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
+Base-58 dictionary Ripple												rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz
+Seed value address														ssh9GVQiCyMZht9ze73PMNP3AM41m
+																	
+
+===============
+Account address
+===============
+Master Public key compressed											035F2BC2E7E3C0A53225493B5630CD1DAABBADC9B5C28903A3B57A79C157B16373
+SHA-256 of Master Public key compressed									6ACCC5A2C4FD9CBC0685024E524E82A848BCFC31C4F103C362EA03C415C75C86
+RIPEMD60 of SHA-256 of Master Public key compressed						C763E3A41A73623A563F8591B74C0830E0D028F6
+Header for account address + hash of Master key compressed				00 + C763E3A41A73623A563F8591B74C0830E0D028F6
+SHA-256 of Header + hash of Master key compressed						33971EF195D00D7BE057EF5C4912A8CF476127DC57F8B46C2A8EE04E83B0202C
+SHA-256 of SHA-256 of Header + hash of Master key compressed			EDDEA677FB111C75A40343538722A6399BE2FC612689F0A8FDD7451D4AF575D7
+8 leftmost hexadecimal digits of above (Checksum)						EDDEA677
+Account address + checksum												00C763E3A41A73623A563F8591B74C0830E0D028F6 + EDDEA677
+Base-58 address															1KBH8bkTXUz7VBQkjMXmXdxZWy9kX2ALfx
+Base-58 dictionary Bitcoin												123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
+Base-58 dictionary Ripple												rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz
+Account address															rKBH3bkTX7zfVBQkjMXmXdxZWy9kXpwLCx

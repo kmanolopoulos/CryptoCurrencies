@@ -8,6 +8,7 @@ namespace CryptoCurrencies.HelperClasses
     {
         private StringOperations operations;
         private SHA256 sha256;
+        private SHA512 sha512;
         private RIPEMD160 ripemd160;
         private KeccakDigest keccak256;
 
@@ -15,8 +16,15 @@ namespace CryptoCurrencies.HelperClasses
         {
             operations = new StringOperations();
             sha256 = SHA256.Create();
+            sha512 = new SHA512Managed();
             ripemd160 = RIPEMD160.Create();
             keccak256 = new KeccakDigest(256);
+        }
+
+        public String SHA512(String input)
+        {
+            byte[] hashValue = sha512.ComputeHash(operations.HexToAscii(input));
+            return operations.AsciiToHex(hashValue);
         }
 
         public String Hash256(String input)

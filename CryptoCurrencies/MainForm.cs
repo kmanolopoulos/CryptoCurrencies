@@ -25,6 +25,11 @@ namespace CryptoCurrencies
             new Dogecoin.Dogecoin().Show();
         }
 
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            new Ripple.Ripple().Show();
+        }
+
         private void pictureBox23_Click(object sender, EventArgs e)
         {
             new Tron.Tron().Show();

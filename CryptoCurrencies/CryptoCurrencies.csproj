@@ -99,6 +99,12 @@
     <Compile Include="CryptoCurrencies\Ethereum\Ethereum.Designer.cs">
       <DependentUpon>Ethereum.cs</DependentUpon>
     </Compile>
+    <Compile Include="CryptoCurrencies\Ripple\Ripple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CryptoCurrencies\Ripple\Ripple.Designer.cs">
+      <DependentUpon>Ripple.cs</DependentUpon>
+    </Compile>
     <Compile Include="CryptoCurrencies\Tron\Tron.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,8 +113,10 @@
     </Compile>
     <Compile Include="HelperClasses\Base58.cs" />
     <Compile Include="HelperClasses\Bech32.cs" />
+    <Compile Include="HelperClasses\BigIntegerOperations.cs" />
     <Compile Include="HelperClasses\DsaCurveFp.cs" />
     <Compile Include="HelperClasses\QRImage.cs" />
+    <Compile Include="HelperClasses\SeedGenerator.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CryptoCurrencies\Ethereum\Ethereum.resx">
       <DependentUpon>Ethereum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CryptoCurrencies\Ripple\Ripple.resx">
+      <DependentUpon>Ripple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CryptoCurrencies\Tron\Tron.resx">
       <DependentUpon>Tron.cs</DependentUpon>

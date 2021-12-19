@@ -8,20 +8,44 @@ namespace CryptoCurrencies.HelperClasses
     {
         private String PrivateKey;
         private String PublicKey;
+        private String maxRandomNum;
+        private String pNum, GxNum, GyNum;
 
         public DsaClass()
         {
-            GenerateKeyPair();
-        }
-        private void GenerateKeyPair()
-        {
+            Initialisation();
             GeneratePrivateKey();
             ExtractPublicKey();
         }
 
+        public DsaClass(String privateKey)
+        {
+            Initialisation();
+            SetPrivateKey(privateKey);
+            ExtractPublicKey();
+        }
+
+        public String GetMaxRandom()
+        {
+            return maxRandomNum;
+        }
+
+        private void Initialisation()
+        {
+            maxRandomNum = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141";
+            pNum = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F";
+            GxNum = "79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798";
+            GyNum = "483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8";
+        }
+
+        private void SetPrivateKey(String value)
+        {
+            PrivateKey = value;
+        }
+
         private void GeneratePrivateKey()
         {
-            BigInteger maxRandom = BigInteger.Parse("0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141", NumberStyles.HexNumber);
+            BigInteger maxRandom = BigInteger.Parse("0" + maxRandomNum, NumberStyles.HexNumber);
             BigInteger privKey;
             byte[] bytes = maxRandom.ToByteArray();
             Random random = new Random();
@@ -38,11 +62,11 @@ namespace CryptoCurrencies.HelperClasses
 
         private void ExtractPublicKey()
         {
-            BigInteger p = BigInteger.Parse("0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F", NumberStyles.HexNumber);
+            BigInteger p = BigInteger.Parse("0" + pNum, NumberStyles.HexNumber);
             BigInteger b = (BigInteger)7;
             BigInteger a = BigInteger.Zero;
-            BigInteger Gx = BigInteger.Parse("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", NumberStyles.HexNumber);
-            BigInteger Gy = BigInteger.Parse("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", NumberStyles.HexNumber);
+            BigInteger Gx = BigInteger.Parse(GxNum, NumberStyles.HexNumber);
+            BigInteger Gy = BigInteger.Parse(GyNum, NumberStyles.HexNumber);
 
             DsaCurveFp curve256 = new DsaCurveFp(p, a, b);
             DsaPoint generator256 = new DsaPoint(curve256, Gx, Gy);

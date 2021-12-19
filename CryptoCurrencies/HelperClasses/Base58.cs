@@ -6,15 +6,20 @@ namespace CryptoCurrencies.HelperClasses
     class Base58
     {
         private StringOperations operations;
-        private String base58Digits;
+        private String defaultDictionary;
 
         public Base58()
         {
             operations = new StringOperations();
-            base58Digits = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+            defaultDictionary = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
         }
 
         public String Encode(String value)
+        {
+            return Encode(value, defaultDictionary);
+        }
+
+        public String Encode(String value, String dictionary)
         {
             byte[] data;
             
@@ -36,13 +41,13 @@ namespace CryptoCurrencies.HelperClasses
             {
                 int remainder = (int)(intData % 58);
                 intData /= 58;
-                result = base58Digits[remainder] + result;
+                result = dictionary[remainder] + result;
             }
 
-            // Append '1' for each leading 0 byte
+            // Append first digit of dictionary for each leading 0 byte
             for (int i = 0; i < data.Length && data[i] == 0; i++)
             {
-                result = '1' + result;
+                result = dictionary[0] + result;
             }
 
             return result;

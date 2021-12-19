@@ -29,7 +29,7 @@ namespace CryptoCurrencies.Ethereum
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6a = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -48,14 +48,14 @@ namespace CryptoCurrencies.Ethereum
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label6a
+            // label6
             // 
-            this.label6a.Location = new System.Drawing.Point(420, 320);
-            this.label6a.Name = "label6a";
-            this.label6a.Size = new System.Drawing.Size(96, 22);
-            this.label6a.TabIndex = 10;
-            this.label6a.Text = "Public key (ETH)";
-            this.label6a.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label6.Location = new System.Drawing.Point(420, 320);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 22);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Public key (ETH)";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -187,7 +187,7 @@ namespace CryptoCurrencies.Ethereum
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label6a);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -210,7 +210,7 @@ namespace CryptoCurrencies.Ethereum
 
         #endregion
 
-        private System.Windows.Forms.Label label6a;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;

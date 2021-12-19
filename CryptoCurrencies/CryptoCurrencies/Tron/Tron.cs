@@ -26,7 +26,7 @@ namespace CryptoCurrencies.Tron
             textBox4.Text = tronAddress;
 
             GenerateQRPrivateKey(tronPrivateKey);
-            GenerateQRPublicKeyEthereum(tronAddress);
+            GenerateQRPublicKeyTron(tronAddress);
         }
 
         private String GetTronPrivateKey(String clearPrivateKey)
@@ -69,7 +69,7 @@ namespace CryptoCurrencies.Tron
             pictureBox2.Image = new QRImage(pictureBox2.Height, pictureBox2.Width).GetBitmap(privateKey);
         }
 
-        private void GenerateQRPublicKeyEthereum(String tronAddress)
+        private void GenerateQRPublicKeyTron(String tronAddress)
         {
             pictureBox3.Image = new QRImage(pictureBox3.Height, pictureBox3.Width).GetBitmap(tronAddress);
         }
