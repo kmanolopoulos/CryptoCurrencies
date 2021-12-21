@@ -20,17 +20,17 @@ namespace CryptoCurrencies
             new Ethereum.Ethereum().Show();
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
             new Dogecoin.Dogecoin().Show();
         }
 
-        private void pictureBox7_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
             new Ripple.Ripple().Show();
         }
 
-        private void pictureBox23_Click(object sender, EventArgs e)
+        private void pictureBox5_Click(object sender, EventArgs e)
         {
             new Tron.Tron().Show();
         }
