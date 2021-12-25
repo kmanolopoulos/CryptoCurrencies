@@ -20,19 +20,19 @@ namespace CryptoCurrencies.Bitcoin
             String clearPublicKey = dsa.GetPublicKey();
             String uncompressedWifPrivateKey = GetWifPrivateKey(clearPrivateKey, false);
             String compressedWifPrivateKey = GetWifPrivateKey(clearPrivateKey, true);
-            String btcAddress = GetBtcAddress(clearPublicKey, true);
+            String btcP2PKHAddress = GetBtcP2PKHAddress(clearPublicKey, true);
             String btcAddressSegWit = GetBtcAddressSegWit(clearPublicKey, true);
 
             textBox1.Text = clearPrivateKey;
             textBox2.Text = uncompressedWifPrivateKey;
             textBox3.Text = compressedWifPrivateKey;
             textBox4.Text = clearPublicKey;
-            textBox5.Text = btcAddress;
+            textBox5.Text = btcP2PKHAddress;
             textBox6.Text = btcAddressSegWit;
 
             GenerateQRPrivateKeyWifUncompressed(uncompressedWifPrivateKey);
             GenerateQRPrivateKeyWifCompressed(compressedWifPrivateKey);
-            GenerateQRPublicKeyBTC(btcAddress);
+            GenerateQRPublicKeyBTC(btcP2PKHAddress);
             GenerateQRPublicKeyBTCSegWit(btcAddressSegWit);
         }
 
@@ -66,7 +66,7 @@ namespace CryptoCurrencies.Bitcoin
             return wifPrivateKey;
         }
 
-        private String GetBtcAddress(String clearPublicKey, Boolean compressed)
+        private String GetBtcP2PKHAddress(String clearPublicKey, Boolean compressed)
         {
             HashClass hash = new HashClass();
             Base58 base58 = new Base58();

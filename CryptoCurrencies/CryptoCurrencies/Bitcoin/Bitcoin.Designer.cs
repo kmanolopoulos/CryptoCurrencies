@@ -156,7 +156,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(171, 22);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Public key (BTC)";
+            this.label5.Text = "Public key (BTC P2PKH)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox4
